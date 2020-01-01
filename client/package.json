@@ -1,0 +1,38 @@
+{
+  "name": "posenet_exe",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@material-ui/core": "^4.8.1",
+    "ml5": "^0.4.3",
+    "p5": "^0.10.2",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "react-p5-wrapper": "^2.0.0",
+    "react-player": "^1.14.2",
+    "react-scripts": "2.0.5",
+    "react-webcam": "^4.0.0",
+    "screenfull": "^5.0.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
