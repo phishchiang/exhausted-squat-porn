@@ -1,7 +1,7 @@
 import React from "react";
 import Webcam from "react-webcam";
 
-export default function WebCamera() {
+export default function WebCamera({ webcamRef }) {
   const videoConstraints = {
     width: 1280,
     height: 720,
@@ -9,7 +9,7 @@ export default function WebCamera() {
     facingMode: "environment"
   };
 
-  const webcamRef = React.useRef(null);
+  // const webcamRef = React.useRef(null);
 
   // const capture = React.useCallback(() => {
   //   const imageSrc = webcamRef.current.getScreenshot();
@@ -18,10 +18,10 @@ export default function WebCamera() {
   return (
     <Webcam
       audio={false}
-      height={360}
+      height={100 + "%"}
+      width={100 + "%"}
       ref={webcamRef}
       screenshotFormat="image/jpeg"
-      width={640}
       mirrored={true}
       videoConstraints={videoConstraints}
       id="video"

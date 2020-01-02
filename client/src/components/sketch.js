@@ -3,11 +3,13 @@ export default function sketch(p) {
   let video;
   let appFianlResult;
   let pose;
+  let width;
+  let height;
 
   p.setup = function() {
-    p.createCanvas(640, 360);
+    p.createCanvas(width, width * 0.5625);
     video = p.createCapture(p.VIDEO);
-    video.size(640, 360);
+    video.size(width, width * 0.5625);
     video.hide();
   };
 
@@ -20,6 +22,12 @@ export default function sketch(p) {
     }
     if (props.pose !== null) {
       pose = props.pose;
+    }
+    if (props.width !== null) {
+      width = props.windowDimensions.width * 0.975;
+    }
+    if (props.height !== null) {
+      height = props.windowDimensions.height;
     }
   };
 
@@ -51,5 +59,9 @@ export default function sketch(p) {
     // p.textSize(64);
     // p.textAlign(p.CENTER, p.CENTER);
     // p.text(appFianlResult, 320, 180);
+  };
+
+  p.windowResized = function() {
+    p.resizeCanvas(width, width * 0.5625);
   };
 }

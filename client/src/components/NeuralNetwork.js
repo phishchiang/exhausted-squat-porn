@@ -25,7 +25,7 @@ let poseNet;
 let neuralNetwork;
 
 export default function NeuralNetwork(props) {
-  const { appFianlResult, setAppFianlResult } = props;
+  const { appFianlResult, setAppFianlResult, webcamRef } = props;
   const [pose, setPose] = useState(null);
   const [stateData, setStateData] = useState("waiting");
   const [inputs, setInputs] = useState([]);
@@ -37,9 +37,11 @@ export default function NeuralNetwork(props) {
   const classes = useStyles();
 
   const classifyImg = () => {
-    const video = document.getElementById("video");
+    // const video = document.getElementById("video");
 
-    poseNet = ml5.poseNet(video, () => console.log("PoseNet Model Loaded!"));
+    poseNet = ml5.poseNet(webcamRef.current.video, () =>
+      console.log("PoseNet Model Loaded!")
+    );
     poseNet.on("pose", gotPoses);
 
     let options = {
@@ -56,7 +58,7 @@ export default function NeuralNetwork(props) {
     // video.style.visibility = "hidden";
 
     // Hide the original webcam video element
-    video.style.display = "none";
+    // webcamRef.current.video.style.display = "none";
   };
 
   const gotPoses = poses => {
@@ -138,6 +140,9 @@ export default function NeuralNetwork(props) {
 
   // 1. Component entry point
   useEffect(() => {
+    if (webcamRef) {
+      webcamRef.current.video.style.display = "none";
+    }
     classifyImg();
   }, []);
 

@@ -6,7 +6,6 @@ export default function Counter(props) {
 
   return (
     <Fragment>
-      <h1>Exhausted Squat Porn</h1>
       <h3>{appFianlResult === "YES" ? "Oh Yeahhhhh~~~" : "DO IT!!!"}</h3>
     </Fragment>
   );

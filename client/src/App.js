@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import "./App.css";
 import WebCamera from "./components/WebCamera";
 import NeuralNetwork from "./components/NeuralNetwork";
@@ -8,16 +8,19 @@ import counterLogin from "./components/counterLogin";
 
 function App() {
   const [appFianlResult, setAppFianlResult] = useState("YES");
+  const webcamRef = useRef(null);
 
   return (
     <div className="App">
-      <header className="App-header">
-        <Counter appFianlResult={appFianlResult} />
+      <header>
+        <h1>🔞Exhausted Squat Porn🔞</h1>
+        {/* <Counter appFianlResult={appFianlResult} /> */}
         <NeuralNetwork
           appFianlResult={appFianlResult}
           setAppFianlResult={setAppFianlResult}
+          webcamRef={webcamRef}
         />
-        <WebCamera />
+        <WebCamera webcamRef={webcamRef} />
       </header>
     </div>
   );
