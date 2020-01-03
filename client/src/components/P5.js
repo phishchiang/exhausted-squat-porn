@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import P5Wrapper from "react-p5-wrapper";
 import sketch from "./sketch";
-import "./responsive-player.css";
+// import "./responsive-player.css";
 
 function getWindowDimensions() {
   const { clientWidth: width, clientHeight: height } = window.document.body;
@@ -26,13 +26,11 @@ export default function P5(props) {
   }, []);
 
   return (
-    <div>
-      <P5Wrapper
-        sketch={sketch}
-        appFianlResult={props.appFianlResult}
-        pose={props.pose}
-        windowDimensions={windowDimensions}
-      />
-    </div>
+    <P5Wrapper
+      sketch={sketch}
+      appFianlResult={props.appFianlResult}
+      pose={props.pose}
+      windowDimensions={windowDimensions}
+    />
   );
 }

@@ -62,23 +62,23 @@ export default function VideoPlayer({ appFianlResult, startPlay }) {
   };
 
   return (
-    <div className="player-wrapper">
+    <div>
       <ReactPlayer
         id="result-vids"
         url={url}
         ref={player}
-        className="react-player"
+        // className="react-player"
         width="100%"
         height="100%"
         playing={playing}
-        controls={false}
+        controls={true}
         light={false}
         played={0}
         loop={true}
         onProgress={handleProgress}
         // onSeek={e => console.log("onSeek", e)}
         onReady={() => setIsReady(true)}
-        onClick={() => onClickPlayer()}
+        // onClick={() => onClickPlayer()}
       />
       {/* <button onClick={() => setPlaying(!playing)}>PlayPause</button>
       <button onClick={() => switchVid(url)} className="GGG">

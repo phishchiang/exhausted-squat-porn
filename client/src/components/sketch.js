@@ -7,9 +7,9 @@ export default function sketch(p) {
   let height;
 
   p.setup = function() {
-    p.createCanvas(width, width * 0.5625);
+    p.createCanvas(640, 320);
     video = p.createCapture(p.VIDEO);
-    video.size(width, width * 0.5625);
+    video.size(640, 320);
     video.hide();
   };
 
@@ -61,7 +61,7 @@ export default function sketch(p) {
     // p.text(appFianlResult, 320, 180);
   };
 
-  p.windowResized = function() {
-    p.resizeCanvas(width, width * 0.5625);
-  };
+  // p.windowResized = function() {
+  //   p.resizeCanvas(width, width * 0.5625);
+  // };
 }

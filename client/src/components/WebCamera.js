@@ -18,8 +18,8 @@ export default function WebCamera({ webcamRef }) {
   return (
     <Webcam
       audio={false}
-      height={100 + "%"}
-      width={100 + "%"}
+      height={320 + "px"}
+      width={640 + "px"}
       ref={webcamRef}
       screenshotFormat="image/jpeg"
       mirrored={true}

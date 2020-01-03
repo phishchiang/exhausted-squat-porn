@@ -12,7 +12,7 @@ function App() {
 
   return (
     <div className="App">
-      <header>
+      <header className="App-header">
         <h1>🔞Exhausted Squat Porn🔞</h1>
         {/* <Counter appFianlResult={appFianlResult} /> */}
         <NeuralNetwork
