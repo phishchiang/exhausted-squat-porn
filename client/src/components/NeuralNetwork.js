@@ -24,15 +24,17 @@ const useStyles = makeStyles(theme => ({
 let poseNet;
 let neuralNetwork;
 
-export default function NeuralNetwork(props) {
-  const { appFianlResult, setAppFianlResult, webcamRef } = props;
+export default function NeuralNetwork({
+  appFianlResult,
+  setAppFianlResult,
+  webcamRef
+}) {
   const [pose, setPose] = useState(null);
   const [stateData, setStateData] = useState("waiting");
   const [inputs, setInputs] = useState([]);
   const [label, setLabel] = useState(null);
   const [myModel, setMyModel] = useState(null);
   const [isFianlReady, setIsFianlReady] = useState(false);
-  const [startPlay, setStartPlay] = useState(false);
 
   const classes = useStyles();
 
@@ -96,17 +98,19 @@ export default function NeuralNetwork(props) {
       metadata: MODEL_META_JSON_URL,
       weights: MODEL_WEIGHTS_BIN_URL
     });
-    setStartPlay(!startPlay);
+    // setStartPlay(!startPlay);
   };
 
   const myModelReady = () => {
     console.log("My own model ready!!!");
+    if (pose == null) {
+      // setAppFianlResult("NO");
+    }
     classifyPose();
   };
 
   const classifyPose = () => {
     setIsFianlReady(true);
-    // debugger;
     if (pose) {
       let newInputArray = pose.keypoints
         .map(item => {
@@ -114,11 +118,8 @@ export default function NeuralNetwork(props) {
         })
         .flat();
       setInputs(newInputArray);
-
-      // debugger;
     } else {
       setTimeout(() => {
-        // debugger;
         classifyPose();
       }, 100);
     }
@@ -179,11 +180,11 @@ export default function NeuralNetwork(props) {
   return (
     <Fragment>
       <div className={classes.root}>
-        <Button variant="contained" onClick={onLoadModel}>
-          {startPlay ? "Stop" : "Play"}
-        </Button>
+        {/* <Button variant="contained" onClick={onLoadModel}>
+          Play
+        </Button> */}
       </div>
-      <VideoPlayer appFianlResult={appFianlResult} startPlay={startPlay} />
+      <VideoPlayer appFianlResult={appFianlResult} setMyModel={setMyModel} />
       {/* <div className={classes.root}>
         <Button variant="contained">Default</Button>
         <Button variant="contained" color="primary">

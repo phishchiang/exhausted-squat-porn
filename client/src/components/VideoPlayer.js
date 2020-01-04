@@ -4,10 +4,17 @@ import ReactPlayer from "react-player";
 import screenfull from "screenfull";
 import "./responsive-player.css";
 
+import {
+  DATA_JSON_URL,
+  MODEL_JSON_URL,
+  MODEL_META_JSON_URL,
+  MODEL_WEIGHTS_BIN_URL
+} from "./url";
+
 import VIDEO_DOTI_URL from "./video/doit.webm";
 import VIDEO_SEXY_URL from "./video/sexy.webm";
 
-export default function VideoPlayer({ appFianlResult, startPlay }) {
+export default function VideoPlayer({ appFianlResult, setMyModel }) {
   const [playing, setPlaying] = useState(false);
   const [isReady, setIsReady] = useState(false);
   const [url, setUrl] = useState(VIDEO_SEXY_URL);
@@ -16,13 +23,23 @@ export default function VideoPlayer({ appFianlResult, startPlay }) {
 
   const player = useRef();
 
+  // useEffect(() => {
+  //   if (startPlay) {
+  //     setPlaying(true);
+  //   } else {
+  //     setPlaying(false);
+  //   }
+  // }, [startPlay]);
+
   useEffect(() => {
-    if (startPlay) {
-      setPlaying(true);
-    } else {
-      setPlaying(false);
+    if (playing === true) {
+      setMyModel({
+        model: MODEL_JSON_URL,
+        metadata: MODEL_META_JSON_URL,
+        weights: MODEL_WEIGHTS_BIN_URL
+      });
     }
-  }, [startPlay]);
+  }, [playing]);
 
   useEffect(() => {
     if (url === VIDEO_SEXY_URL && isReady) {
@@ -57,6 +74,16 @@ export default function VideoPlayer({ appFianlResult, startPlay }) {
     screenfull.toggle(findDOMNode(player.current));
   };
 
+  const handlePlay = () => {
+    console.log("play");
+    setPlaying(true);
+  };
+
+  const handlePause = () => {
+    console.log("pause");
+    setPlaying(false);
+  };
+
   const handleProgress = state => {
     setPlayed(state.played);
   };
@@ -71,6 +98,8 @@ export default function VideoPlayer({ appFianlResult, startPlay }) {
         width="100%"
         height="100%"
         playing={playing}
+        onPlay={handlePlay}
+        onPause={handlePause}
         controls={true}
         light={false}
         played={0}
