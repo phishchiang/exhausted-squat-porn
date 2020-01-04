@@ -10,17 +10,6 @@ import {
   MODEL_WEIGHTS_BIN_URL
 } from "./url";
 
-import { makeStyles } from "@material-ui/core/styles";
-import Button from "@material-ui/core/Button";
-
-const useStyles = makeStyles(theme => ({
-  root: {
-    "& > *": {
-      margin: theme.spacing(1)
-    }
-  }
-}));
-
 let poseNet;
 let neuralNetwork;
 
@@ -35,8 +24,6 @@ export default function NeuralNetwork({
   const [label, setLabel] = useState(null);
   const [myModel, setMyModel] = useState(null);
   const [isFianlReady, setIsFianlReady] = useState(false);
-
-  const classes = useStyles();
 
   const classifyImg = () => {
     // const video = document.getElementById("video");
@@ -182,27 +169,13 @@ export default function NeuralNetwork({
 
   return (
     <Fragment>
-      <div className={classes.root}>
-        {/* <Button variant="contained" onClick={onLoadModel}>
-          Play
-        </Button> */}
-      </div>
-      <VideoPlayer appFianlResult={appFianlResult} setMyModel={setMyModel} />
       {/* <div className={classes.root}>
-        <Button variant="contained">Default</Button>
-        <Button variant="contained" color="primary">
-          Primary
-        </Button>
-        <Button variant="contained" color="secondary">
-          Secondary
-        </Button>
-        <Button variant="contained" disabled>
-          Disabled
-        </Button>
-        <Button variant="contained" color="primary" href="#contained-buttons">
-          Link
+        <Button variant="contained" onClick={onLoadModel}>
+          Play
         </Button>
       </div> */}
+      <VideoPlayer appFianlResult={appFianlResult} setMyModel={setMyModel} />
+
       <P5 appFianlResult={appFianlResult} pose={pose} />
 
       {/* <button onClick={() => collectData("NO")}>Collect data NO</button>
