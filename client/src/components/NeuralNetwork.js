@@ -175,6 +175,9 @@ export default function NeuralNetwork({
       // console.log(myModel);
       neuralNetwork.load(myModel, myModelReady);
     }
+    if (pose == null && myModel !== null) {
+      setAppFianlResult("NO");
+    }
   }, [myModel]);
 
   return (
