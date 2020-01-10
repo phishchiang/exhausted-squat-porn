@@ -75,12 +75,12 @@ export default function VideoPlayer({ appFianlResult, setMyModel }) {
   };
 
   const handlePlay = () => {
-    console.log("play");
+    // console.log("play");
     setPlaying(true);
   };
 
   const handlePause = () => {
-    console.log("pause");
+    // console.log("pause");
     setPlaying(false);
   };
 

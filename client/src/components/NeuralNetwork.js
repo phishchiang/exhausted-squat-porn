@@ -26,28 +26,23 @@ export default function NeuralNetwork({
   const [isFianlReady, setIsFianlReady] = useState(false);
 
   const classifyImg = () => {
-    // const video = document.getElementById("video");
-
+    // To Get the PoseNet Pre-trained Model from Google and Setup up users' cam as input
     poseNet = ml5.poseNet(webcamRef.current.video, () =>
       console.log("PoseNet Model Loaded!")
     );
+
+    // Setup the callback once it find any pose.
     poseNet.on("pose", gotPoses);
 
+    // Setup basic config for our nerual network
     let options = {
-      inputs: 34,
-      outputs: 2,
-      task: "classification",
-      debug: true
+      inputs: 34, // The total Array length of every keypoinst. ( nose, eyes, ear...etc)
+      outputs: 4, // The number of label that we assigned ( in my case, I only have either "Do Squats" or "Not" )
+      task: "classification", // This type will give you the discrete reslut that we labeled
+      debug: true // Give you a UI while training the data.
     };
 
     neuralNetwork = ml5.neuralNetwork(options);
-    // neuralNetwork.loadData(myData, dataReady);
-    // neuralNetwork.loadData("./data.json", dataReady);
-    // setBrain(ml5.neuralNetwork(options));
-    // video.style.visibility = "hidden";
-
-    // Hide the original webcam video element
-    // webcamRef.current.video.style.display = "none";
   };
 
   const gotPoses = poses => {
@@ -68,8 +63,6 @@ export default function NeuralNetwork({
   };
 
   const dataReady = () => {
-    console.log("reading the brain");
-    console.log(neuralNetwork);
     neuralNetwork.normalizeData();
     neuralNetwork.train({ epochs: 100 }, trainFinished);
   };
@@ -118,11 +111,10 @@ export default function NeuralNetwork({
     if (error) {
       console.error(error);
     }
-    if (results[0].confidence > 0.75) {
-      // console.log(results[0].confidence);
-      // setFianlResult(results[0].label);
+    if (results[0].confidence > 0.7) {
       setAppFianlResult(results[0].label);
     }
+
     classifyPose();
   };
 
@@ -144,13 +136,12 @@ export default function NeuralNetwork({
         })
         .flat();
       setInputs(newInputArray);
-      console.log(label);
     }
     // If got the new pose, and ready to get the final result
     if (isFianlReady) {
-      // console.log(inputs);
       neuralNetwork.classify(inputs, gotResult);
     }
+    // console.log(pose);
   }, [pose]);
 
   useEffect(() => {
@@ -179,7 +170,8 @@ export default function NeuralNetwork({
       <P5 appFianlResult={appFianlResult} pose={pose} />
 
       {/* <button onClick={() => collectData("NO")}>Collect data NO</button>
-      <button onClick={() => collectData("middle")}>Collect data M</button>
+      <button onClick={() => collectData("C")}>Collect data C</button>
+      <button onClick={() => collectData("M")}>Collect data M</button>
       <button onClick={() => collectData("YES")}>Collect data YES</button>
       <button onClick={() => neuralNetwork.saveData()}>Save data</button>
       <button onClick={() => neuralNetwork.loadData(DATA_JSON_URL, dataReady)}>
