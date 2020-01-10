@@ -85,7 +85,9 @@ export default function VideoPlayer({ appFianlResult, setMyModel }) {
   };
 
   const handleProgress = state => {
-    setPlayed(state.played);
+    if (url === VIDEO_SEXY_URL) {
+      setPlayed(state.played);
+    }
   };
 
   return (

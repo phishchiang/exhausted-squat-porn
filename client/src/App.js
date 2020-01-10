@@ -7,7 +7,7 @@ import Counter from "./components/Counter";
 import counterLogin from "./components/counterLogin";
 
 function App() {
-  const [appFianlResult, setAppFianlResult] = useState(null);
+  const [appFianlResult, setAppFianlResult] = useState("NO");
   const webcamRef = useRef(null);
 
   return (
