@@ -14,7 +14,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <h2>🔞Exhausted Squat NSFW🔞</h2>
-        <p>Actually these is nothing NSFW</p>
+        <p>Actually there's nothing NSFW at all</p>
         {/* <Counter appFianlResult={appFianlResult} /> */}
         <NeuralNetwork
           appFianlResult={appFianlResult}
